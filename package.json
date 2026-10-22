@@ -1,0 +1,21 @@
+{
+  "name": "to-do-list",
+  "version": "1.0.0",
+  "description": "To-do list app with projects, priorities, due dates and localStorage persistence",
+  "private": true,
+  "scripts": {
+    "start": "webpack serve --open",
+    "build": "webpack"
+  },
+  "dependencies": {
+    "date-fns": "^4"
+  },
+  "devDependencies": {
+    "css-loader": "^7",
+    "html-webpack-plugin": "^5",
+    "style-loader": "^4",
+    "webpack": "^5",
+    "webpack-cli": "^6",
+    "webpack-dev-server": "^5"
+  }
+}
