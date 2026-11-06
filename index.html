@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recordatorios</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="app-shell">
+        <aside class="sidebar">
+            <div class="brand-row">
+                <div>
+                    <p class="eyebrow">Mi espacio</p>
+                    <h1>Recordatorios</h1>
+                </div>
+                <button class="icon-button profile-button" id="profile-button" type="button" aria-label="Editar perfil">F</button>
+            </div>
+
+            <button class="search-button" type="button" aria-label="Buscar">
+                <span class="search-icon" aria-hidden="true">⌕</span>
+                <span>Buscar</span>
+            </button>
+
+            <nav class="smart-list" aria-label="Listas inteligentes">
+                <button class="smart-item active" type="button" data-filter="today">
+                    <img class="smart-icon" src="images/hoy.png" alt="">
+                    <span class="smart-label">Hoy</span>
+                    <span class="smart-count" id="today-count">4</span>
+                </button>
+                <button class="smart-item" type="button" data-filter="scheduled">
+                    <img class="smart-icon" src="images/programados.png" alt="">
+                    <span class="smart-label">Programados</span>
+                    <span class="smart-count" id="scheduled-count">1</span>
+                </button>
+                <button class="smart-item" type="button" data-filter="all">
+                    <img class="smart-icon" src="images/todos.png" alt="">
+                    <span class="smart-label">Todos</span>
+                    <span class="smart-count" id="all-count">6</span>
+                </button>
+                <button class="smart-item" type="button" data-filter="completed">
+                    <img class="smart-icon" src="images/completados.png" alt="">
+                    <span class="smart-label">Completados</span>
+                    <span class="smart-count" id="completed-count">1</span>
+                </button>
+            </nav>
+
+            <section class="my-lists" aria-labelledby="my-lists-title">
+                <div class="section-heading">
+                    <h2 id="my-lists-title">Mis listas</h2>
+                    <button class="text-button" id="add-project-button" type="button">Añadir</button>
+                    </div>
+                    <div id="project-list"></div>
+            </section>
+        </aside>
+
+        <section class="content-panel">
+            <header class="content-header">
+                <div>
+                    <p class="date-label" id="date-label"></p>
+                    <h2 id="view-title">Hoy</h2>
+                </div>
+                <button class="add-button" id="open-task-form" type="button">
+                    <span aria-hidden="true">+</span>
+                    Nuevo
+                </button>
+            </header>
+
+            <section class="task-board" id="task-board" aria-live="polite"></section>
+
+        </section>
+    </main>
+
+    <dialog class="profile-modal" id="profile-modal">
+        <form id="profile-form">
+            <div class="profile-modal-header">
+                <div>
+                    <p class="eyebrow">Información personal</p>
+                    <h2>Mi perfil</h2>
+                </div>
+                <button class="modal-close" id="close-profile" type="button" aria-label="Cerrar">×</button>
+            </div>
+
+            <div class="profile-photo-section">
+                <div class="profile-preview" id="profile-preview">F</div>
+                <div>
+                    <label class="photo-button" for="profile-photo">Cambiar foto</label>
+                    <input class="sr-only" id="profile-photo" type="file" accept="image/*">
+                </div>
+            </div>
+
+            <div class="profile-fields">
+                <label>
+                    Nombre
+                    <input id="profile-name" type="text" maxlength="50" autocomplete="name">
+                </label>
+                <label>
+                    Fecha de nacimiento
+                    <input id="profile-birthdate" type="date">
+                </label>
+                <label>
+                    Género
+                    <select id="profile-gender">
+                        <option value="">Seleccionar</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="No binario">No binario</option>
+                        <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </label>
+            </div>
+
+            <button class="profile-save" type="submit">Guardar cambios</button>
+        </form>
+    </dialog>
+
+    <dialog class="task-modal" id="task-modal">
+        <form id="task-form">
+            <div class="profile-modal-header">
+                <div>
+                    <p class="eyebrow">Nueva tarea</p>
+                    <h2 id="task-modal-title">Detalles</h2>
+                </div>
+                <button class="modal-close" id="close-task" type="button" aria-label="Cerrar">×</button>
+            </div>
+            <input id="task-id" type="hidden">
+            <div class="profile-fields">
+                <label>Título
+                    <input id="task-title-input" type="text" maxlength="100" required>
+                </label>
+                <label>Descripción
+                    <textarea id="task-description-input" rows="3"></textarea>
+                </label>
+                <label>Fecha de vencimiento
+                    <input id="task-due-date-input" type="date">
+                </label>
+                <div class="task-form-grid">
+                    <label>Prioridad
+                        <select id="task-priority-input">
+                            <option value="low">Baja</option>
+                            <option value="medium" selected>Media</option>
+                            <option value="high">Alta</option>
+                        </select>
+                    </label>
+                    <label>Proyecto
+                        <select id="task-project-input"></select>
+                    </label>
+                </div>
+                <label>Notas
+                    <textarea id="task-notes-input" rows="2"></textarea>
+                </label>
+            </div>
+            <div class="task-modal-actions">
+                <button class="delete-button" id="delete-task" type="button">Eliminar</button>
+                <button class="profile-save" type="submit">Guardar tarea</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog class="profile-modal compact-modal" id="project-modal">
+        <form id="project-form">
+            <div class="profile-modal-header">
+                <div>
+                    <p class="eyebrow">Organización</p>
+                    <h2>Nuevo proyecto</h2>
+                </div>
+                <button class="modal-close" id="close-project" type="button" aria-label="Cerrar">×</button>
+            </div>
+            <div class="profile-fields project-field">
+                <label>Nombre del proyecto
+                    <input id="project-name-input" type="text" maxlength="40" required>
+                </label>
+            </div>
+            <button class="profile-save" type="submit">Crear proyecto</button>
+        </form>
+    </dialog>
+    <script type="module" src="index.js"></script>
+</body>
+</html>
