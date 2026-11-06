@@ -13,9 +13,10 @@
   "devDependencies": {
     "css-loader": "^7",
     "html-webpack-plugin": "^5",
+    "prettier": "3.9.10",
     "style-loader": "^4",
     "webpack": "^5",
     "webpack-cli": "^6",
-    "webpack-dev-server": "^5"
+    "webpack-dev-server": "^6.1.0"
   }
 }

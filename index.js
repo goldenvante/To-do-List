@@ -51,6 +51,7 @@ function visibleTodos() {
     if (activeView === "all") return allTodos();
     if (activeView === "completed") return allTodos().filter(({ todo }) => todo.completed);
 
+
     const projectId = activeView.replace("project:", "");
     const project = todoApp.findProject(projectId);
     return project ? project.todos.map((todo) => ({ todo, project })) : [];
